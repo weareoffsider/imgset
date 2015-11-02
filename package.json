@@ -1,0 +1,25 @@
+{
+  "name": "srcset",
+  "version": "0.1.0",
+  "description": "",
+  "main": "srcset.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "browserify": {
+    "transform": [
+      [
+        "babelify"
+      ]
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.0.3",
+    "babelify": "^6.3.0",
+    "gulp": "^3.9.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-postcss": "^6.0.1"
+  }
+}

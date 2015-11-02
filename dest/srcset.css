@@ -1,0 +1,80 @@
+/*
+  Srcset
+  ======
+  
+  less/sass/anything that's cool with nesting
+
+  (1) Default ratio 16:9
+  You should override this based on the image ratio you want to use. 
+  I often do this by inline styling a padding bottom that matches the exact ratio of the image. 
+  
+  (2) <img> element is used only so that users can right-click save-as images.
+  
+  (3) Our image is displayed on this element rendered by an inline background image style. The reason why it's an element in its own right (instead of just putting the background image on the .Srcset element) is so that there is flexibility when it comes to: a) fading the image in when it loads, b) transforming it on hover by transforming scale (or a slow scale for a ken burns style effect).
+*/
+.Srcset {
+  display: block;
+  position: relative;
+  padding: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.Srcset__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  opacity: 0;
+}
+.Srcset__background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s;
+          transition: opacity 0.5s;
+}
+.Srcset.is-loaded .Srcset__background {
+  opacity: 1;
+}
+.Srcset--example {
+  background-color: #000;
+}
+.Srcset--example:before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  border-right-color: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+.Srcset--example.is-loaded .Srcset--example:before {
+  display: none;
+}
+.Srcset--example .Srcset__background {
+  -webkit-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+          transform: scale(1.05);
+  -webkit-transition: opacity 0.5s, -webkit-transform 10s;
+          transition: opacity 0.5s, transform 10s;
+  background-position: 95% 50%;
+}
+.Srcset--example.is-loaded .Srcset__background {
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+}
