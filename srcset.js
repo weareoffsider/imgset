@@ -87,7 +87,9 @@ function Srcset(selector) {
     
 
     updateImageSrcForElWidth()
-    window.onresize = debounce(updateImageSrcForElWidth, 100)    
+    
+    window.addEventListener('resize', debounce(updateImageSrcForElWidth, 100))
+    
   }) // forEach
 }
 
