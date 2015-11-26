@@ -1,5 +1,5 @@
 /*
-  Srcset
+  Imgset
   ======
   
   less/sass/anything that's cool with nesting
@@ -10,11 +10,11 @@
   
   (2) <img> element is used only so that users can right-click save-as images.
   
-  (3) Our image is displayed on this element rendered by an inline background image style. The reason why it's an element in its own right (instead of just putting the background image on the .Srcset element) is so that there is flexibility when it comes to: a) fading the image in when it loads, b) transforming it on hover by transforming scale (or a slow scale for a ken burns style effect).
+  (3) Our image is displayed on this element rendered by an inline background image style. The reason why it's an element in its own right (instead of just putting the background image on the .Imgset element) is so that there is flexibility when it comes to: a) fading the image in when it loads, b) transforming it on hover by transforming scale (or a slow scale for a ken burns style effect).
 */
 
 
-.Srcset {
+.Imgset {
   display: block;
   position: relative;
   padding: 0;
@@ -76,7 +76,7 @@
 
 // Example 
 
-.Srcset--example {
+.Imgset--example {
   background-color: #000;
   // padding-bottom: 100%;
   
@@ -102,7 +102,7 @@
   }
   
   
-  .Srcset__background {
+  .Imgset__background {
     transform: scale(1.05);
     transition: opacity 0.5s, transform 10s;
     
@@ -111,7 +111,7 @@
   }
   
   
-  &.is-loaded .Srcset__background {
+  &.is-loaded .Imgset__background {
     transform: scale(1);
   }
 }

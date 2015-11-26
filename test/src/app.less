@@ -1,0 +1,25 @@
+@import '../../imgset.less';
+
+body {
+  line-height: 1.4;
+  padding: 2em;
+  font-family: sans-serif;;
+}
+
+pre {
+  color: #666;
+}
+
+.group {
+  overflow: hidden; // clear floats
+  
+  &__lhs {
+    float: left;
+    width: calc(33.333% - 0.7em);
+  }
+  
+  &__rhs {
+    float: right;
+    width: calc(66.666% - 0.7em);
+  }
+}

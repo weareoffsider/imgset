@@ -5,14 +5,15 @@ IDEA:
 - [ ] e.g., { lazy: 500 } attempts to load images when near 500px of bottom of screen
       Probably best to do this via load: false and have a single scroll tracker
       request srcset images to load on demand.
+- [ ] Might be nice if imgset retuned a promise when images were loaded. This way your could use it to priority load assets as little more efficiently. 
 */
 
 
-import debounce from './debounce.js'
-import imageLoaded from './imageLoaded.js'
+import debounce from './lib/debounce.js'
+import imageLoaded from './lib/imageLoaded.js'
 
 
-module.exports = Srcset
+export default Imgset
 
 
 // Finds the closest matched (but not lower) object key and returns the mathcing value
@@ -28,21 +29,23 @@ let closestKey = (obj, target) => {
 }
 
 
+// let createChildEls = (el) => {
+//   
+// }
 
-function Srcset(selector) {
-  selector = selector || '.Srcset'
+
+function Imgset(selector) {
+  selector = selector || '.Imgset'
   
   let els = Array.prototype.slice.call(document.querySelectorAll(selector))
   // ^ Convert node list to array for iteration
-  
-  console.log(els)
   
   // Setup
   els.forEach( el => {
     // TODO: Skip if already applied
     // What's a nice way of doing this? 
-    if ( el.wknds_srcset ) return
-    el.wknds_srcset
+    if ( el.wknds_imgset ) return
+    el.wknds_imgset
     
 
     // Get the set of images from the <noscript> child node's data attribute
@@ -52,19 +55,17 @@ function Srcset(selector) {
     
     // Create dom elements for background, and img
     let background_el = document.createElement('span')
-    background_el.className = 'Srcset__background'
+    background_el.className = 'Imgset__background'
     
-    let img_el = document.createElement('img')    
-    img_el.className = 'Srcset__img'
+    let img_el = document.createElement('img')
+    img_el.className = 'Imgset__img'
     img_el.alt = data.alt || ''
     
     el.appendChild(background_el)
     el.appendChild(img_el)
     
     
-    let updateImageSrcForElWidth = () => {
-      console.log(el)
-      
+    let updateImageSrcForElWidth = () => {      
       // Don't request image if element has 0 width
       if ( el.offsetWidth === 0 )
         return

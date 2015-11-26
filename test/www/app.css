@@ -1,5 +1,5 @@
 /*
-  Srcset
+  Imgset
   ======
   
   less/sass/anything that's cool with nesting
@@ -10,9 +10,9 @@
   
   (2) <img> element is used only so that users can right-click save-as images.
   
-  (3) Our image is displayed on this element rendered by an inline background image style. The reason why it's an element in its own right (instead of just putting the background image on the .Srcset element) is so that there is flexibility when it comes to: a) fading the image in when it loads, b) transforming it on hover by transforming scale (or a slow scale for a ken burns style effect).
+  (3) Our image is displayed on this element rendered by an inline background image style. The reason why it's an element in its own right (instead of just putting the background image on the .Imgset element) is so that there is flexibility when it comes to: a) fading the image in when it loads, b) transforming it on hover by transforming scale (or a slow scale for a ken burns style effect).
 */
-.Srcset {
+.Imgset {
   display: block;
   position: relative;
   padding: 0;
@@ -21,7 +21,7 @@
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
-.Srcset__img {
+.Imgset__img {
   position: absolute;
   top: 0;
   left: 0;
@@ -29,7 +29,7 @@
   min-height: 100%;
   opacity: 0;
 }
-.Srcset__background {
+.Imgset__background {
   position: absolute;
   top: 0;
   right: 0;
@@ -42,13 +42,13 @@
   -webkit-transition: opacity 0.5s;
           transition: opacity 0.5s;
 }
-.Srcset.is-loaded .Srcset__background {
+.Imgset.is-loaded .Imgset__background {
   opacity: 1;
 }
-.Srcset--example {
+.Imgset--example {
   background-color: #000;
 }
-.Srcset--example:before {
+.Imgset--example:before {
   content: "";
   width: 16px;
   height: 16px;
@@ -62,10 +62,10 @@
   left: 0;
   margin: auto;
 }
-.Srcset--example.is-loaded .Srcset--example:before {
+.Imgset--example.is-loaded .Imgset--example:before {
   display: none;
 }
-.Srcset--example .Srcset__background {
+.Imgset--example .Imgset__background {
   -webkit-transform: scale(1.05);
       -ms-transform: scale(1.05);
           transform: scale(1.05);
@@ -73,8 +73,27 @@
           transition: opacity 0.5s, transform 10s;
   background-position: 95% 50%;
 }
-.Srcset--example.is-loaded .Srcset__background {
+.Imgset--example.is-loaded .Imgset__background {
   -webkit-transform: scale(1);
       -ms-transform: scale(1);
           transform: scale(1);
+}
+body {
+  line-height: 1.4;
+  padding: 2em;
+  font-family: sans-serif;
+}
+pre {
+  color: #666;
+}
+.group {
+  overflow: hidden;
+}
+.group__lhs {
+  float: left;
+  width: calc(33.333% - 0.7em);
+}
+.group__rhs {
+  float: right;
+  width: calc(66.666% - 0.7em);
 }

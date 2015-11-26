@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Imgset.js</title>
+  <link href="app.css" rel="stylesheet"/>
+</head>
+<body>
+
+  <h1>Imgset.js</h1>
+  <p>See README.md</p>
+
+  <span class="Imgset">
+    <noscript 
+      data-json='{
+        "set": {
+          "0": "photo-500.jpg",
+          "768": "photo-1000.jpg",
+          "1024": "photo-1400.jpg"
+        },
+        "alt": "Alternate text.",
+        "focus": ["x", "y"]
+      }'
+    >
+      <img src="photo-1000.jpg" alt="Alternate Text." />
+    </noscript>
+  </span>
+
+  <br>
+
+  <div class="group">
+    <div class="group__lhs">
+      
+      <span class="Imgset Imgset--example">
+        <noscript 
+          data-json='{
+            "set": {
+              "0": "photo-500.jpg",
+              "768": "photo-1000.jpg",
+              "1024": "photo-1400.jpg"
+            },
+            "alt": "Alternate text.",
+            "focus": ["x", "y"]
+          }'
+        >
+          <img src="photo-1000.jpg" alt="Alternate Text." />
+        </noscript>
+      </span>
+    
+    </div>    
+    <div class="group__rhs">
+
+      <span class="Imgset Imgset--example">
+        <noscript 
+          data-json='{
+            "set": {
+              "0": "photo-500.jpg",
+              "768": "photo-1000.jpg",
+              "1024": "photo-1400.jpg"
+            },
+            "alt": "Alternate text.",
+            "focus": ["x", "y"]
+          }'
+        >
+          <img src="photo-1000.jpg" alt="Alternate Text." />
+        </noscript>
+      </span>
+      
+    </div>
+  </div>
+  
+
+
+  <script src="app.js"></script>
+</body>
+</html>

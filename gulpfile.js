@@ -1,43 +1,37 @@
 var gulp         = require('gulp'),
     less         = require('gulp-less'),
-    browserify   = require('gulp-browserify'),
     postcss      = require('gulp-postcss'),
     autoprefixer = require('autoprefixer')
 
+var fs = require("fs");
+var browserify = require("browserify");
+var babelify = require("babelify");
 
-var SRC_DIR = '.',
-    DEST_DIR = './dest'
+
+var SRC_DIR = './test/src',
+    DEST_DIR = './test/www'
     
     
 gulp.task('js', function() {
-  gulp.src([
-    'srcset.js'
-  ])
-  // .pipe(plumber(plumberErrorHandler))
-  .pipe(browserify({
-    debug: true
-  }))
-  .pipe(gulp.dest(DEST_DIR))
+  browserify(SRC_DIR + '/app.js', { debug: true })
+    .transform(babelify)
+    .bundle()
+    .on("error", function (err) { console.log("Error : " + err.message); })
+    .pipe(fs.createWriteStream(DEST_DIR + "/app.js"));
 })
 
 
-gulp.task('test', function() {
+gulp.task('move', function() {
   gulp.src([
-    'test/app.js'
+    SRC_DIR + '/index.html',
+    SRC_DIR + '/*.jpg'
   ])
-  // .pipe(plumber(plumberErrorHandler))
-  .pipe(browserify({
-    debug: true
-  }))
-  .pipe(gulp.dest(DEST_DIR))
+    .pipe(gulp.dest(DEST_DIR))
 })
 
 
 gulp.task('less', function() {
-  gulp.src([
-    'srcset.less',
-  ])
-  // .pipe(plumber(plumberErrorHandler))
+  gulp.src(SRC_DIR + '/app.less')
   .pipe(less({
     strictMath: true,
   }))
@@ -51,13 +45,14 @@ gulp.task('less', function() {
 gulp.task('build', function() {
   gulp.start('less')
   gulp.start('js')
+  gulp.start('move')
 })
 
 
 gulp.task('watch', function() {
-  gulp.watch('srcset.less', ['less'])
-  gulp.watch('srcset.js', ['js'])
-  gulp.watch(['test/app.js', 'srcset.js'], ['test'])
+  gulp.watch(['./imgset.less', SRC_DIR + '/app.less'], ['less'])
+  gulp.watch(['./imgset.js', SRC_DIR + '/app.ls'], ['js'])
+  gulp.watch([SRC_DIR + '/index.html'], ['move'])
 })
 
 
