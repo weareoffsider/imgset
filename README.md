@@ -1,7 +1,5 @@
 # Imgset.js
 
-#### Wot m8?
-
 Javascript image loading based on element width. 
 
 #### Syntax
